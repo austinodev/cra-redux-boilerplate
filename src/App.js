@@ -1,23 +1,22 @@
 import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import logo from './logo.svg';
 import './App.css';
+import {decrementValue, incrementValue} from "./redux/actions/value_actions";
 
 function App() {
+  const value = useSelector(state => state.value);
+  const dispatch = useDispatch();
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          CRA starter boilerplate with redux configured
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={() => dispatch(incrementValue())}>+</button>
+        <p style={{ color: "#fff" }}>{value}</p>
+        <button onClick={() => dispatch(decrementValue())}>-</button>
       </header>
     </div>
   );
